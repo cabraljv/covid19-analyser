@@ -193,7 +193,7 @@ export const ChartSection = styled.div`
     @media (min-width: 300px){
             section{
                 display: flex;
-                flex-direction: column;
+                flex-direction: column-reverse;
                 width: 100%;
                 overflow-x: scroll;
                 div#grafico{
@@ -235,7 +235,67 @@ export const ChartSection = styled.div`
             div#select{
                 width: 150px;
                 margin-left: auto;
+                margin-right: 55px;
+            }
+            h2{
+                font-size: 3em;
+                font-weight: normal;
+                color: #F44242;
+                padding-bottom: 15px;
+                padding-top: 10px;
+                padding-left: 55px;
+            }
+        
+    }   
+`;
+export const DeathChartSection = styled.div`
+    width: 100%;
+    margin-top: 50px;
+    @media (min-width: 300px){
+            section{
+                display: flex;
+                flex-direction: column-reverse;
+                width: 100%;
+                overflow-x: scroll;
+                div#grafico{
+                    
+                    margin-right: 30px;
+                    
+                }
+            }
+            
+            
+            div#select{
+                width: 150px;
+                margin: 10px auto;          
+            }
+            h2{
+                font-size: 2em;
+                font-weight: normal;
+                color: #F44242;
+                padding-bottom: 15px;
+                padding-top: 10px;
+                padding-left: 55px;
+            }
                 
+    }
+    @media (min-width: 600px){
+            section{
+                display: flex;
+                flex-direction: row;
+                overflow-x: hidden;
+                div#grafico{
+                    width: 80%;
+                    padding: 5px 55px;
+                    padding-right: 0;
+                }
+            }
+            
+            
+            div#select{
+                width: 150px;
+                margin-left: auto;
+                margin-right: 55px;
             }
             h2{
                 font-size: 3em;
