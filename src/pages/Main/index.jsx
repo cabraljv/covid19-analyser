@@ -154,7 +154,7 @@ export default function Main() {
         data_atual=''
         
         for(let i=0;i<graphData.length;i++){
-            var date = graphData[i].date.replace('2020-','');
+            date = graphData[i].date.replace('2020-','');
             date=date.split('-')
             date = date[1]+'/'+date[0]
             if(graphData[i].state==='TOTAL' && graphData[i].deaths!=='0' ){
