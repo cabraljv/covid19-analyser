@@ -4,6 +4,24 @@ import bg from '../../assets/images/3.png'
 export const Container = styled.div`
     display: flex;
     flex-direction: column;
+    footer{
+        width: 100%;
+        background: #F44242;
+        color: #fff;
+        margin-top: 50px;
+        display: flex;
+        p{
+            font-weight: normal;
+            padding: 55px;
+            a{
+                color: #fff;
+                text-decoration: none;
+            }
+            a:hover{
+                color: #888;
+            }
+        }
+    }
   header{
       width: 100%;
       height: 300px;

@@ -234,6 +234,9 @@ export default function Main() {
             
            
         </ChartSection>
+        <footer>
+            <p>Developed by <a href="https://instagram.com/jvcabralz">João Victor Cabral</a></p>
+        </footer>
     </Container>
     );
 }
