@@ -189,7 +189,8 @@ export const MapPoint = styled.div`
 `;
 export const ChartSection = styled.div`
     width: 100%;
-
+    display: flex;
+    flex-direction: column;
     @media (min-width: 300px){
             section{
                 display: flex;
@@ -197,9 +198,7 @@ export const ChartSection = styled.div`
                 width: 100%;
                 overflow-x: scroll;
                 div#grafico{
-                    
-                    margin-right: 30px;
-                    
+                    margin-right: 30px;  
                 }
             }
             
@@ -214,8 +213,8 @@ export const ChartSection = styled.div`
                 font-weight: normal;
                 color: #F44242;
                 padding-bottom: 15px;
-                padding-top: 10px;
-                padding-left: 55px;
+                padding-top: 50px;
+                margin: auto;
             }
                 
     }
@@ -242,7 +241,8 @@ export const ChartSection = styled.div`
                 font-weight: normal;
                 color: #F44242;
                 padding-bottom: 15px;
-                padding-top: 10px;
+                padding-top: 30px;
+                margin: 0;
                 padding-left: 55px;
             }
         
@@ -251,6 +251,8 @@ export const ChartSection = styled.div`
 export const DeathChartSection = styled.div`
     width: 100%;
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
     @media (min-width: 300px){
             section{
                 display: flex;
@@ -275,7 +277,7 @@ export const DeathChartSection = styled.div`
                 color: #F44242;
                 padding-bottom: 15px;
                 padding-top: 10px;
-                padding-left: 55px;
+                margin: auto;
             }
                 
     }
@@ -302,7 +304,8 @@ export const DeathChartSection = styled.div`
                 font-weight: normal;
                 color: #F44242;
                 padding-bottom: 15px;
-                padding-top: 10px;
+                padding-top: 30px;
+                margin: 0;
                 padding-left: 55px;
             }
         

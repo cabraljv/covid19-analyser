@@ -269,6 +269,7 @@ export default function Main() {
                         options={states} 
                         defaultValue={{ value: 'TOTAL', label: 'TOTAL' }} 
                         onChange={uf=>setGraphScope(uf)}
+                        isSearchable={false}
                     />
                 </div>
                 
@@ -298,6 +299,7 @@ export default function Main() {
                         options={states} 
                         defaultValue={{ value: 'TOTAL', label: 'TOTAL' }} 
                         onChange={uf=>setGraphScopeDeath(uf)}
+                        isSearchable={false}
                     />
                 </div>
                 
