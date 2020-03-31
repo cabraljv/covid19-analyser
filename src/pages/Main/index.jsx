@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 
-import { Container, MapSection,MapPoint,ChartSection,DeathChartSection } from './styles';
+import { Container, MapSection,MapPoint,ChartSection } from './styles';
 import corona from '../../assets/images/2.png'
 import GoogleMaps from 'google-map-react';
 import biohazard from '../../assets/icons/biohazard.svg'
