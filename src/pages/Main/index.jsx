@@ -10,7 +10,7 @@ import Select from 'react-select'
 import api_keys from '../../keys'
 
 import {
-    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
+    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend,
   } from 'recharts';
 
 export default function Main() {    
@@ -18,7 +18,6 @@ export default function Main() {
     const [openInfo, setOpenInfo] = useState(-1);
     const [graphData,setGraphData] = useState([]);
     const [inUseChart, setInUseChart] = useState();
-    const [inUseChartDeath, setInUseChartDeath] = useState();
 
     const states = [
         { value: 'TOTAL', label: 'TOTAL' },
@@ -106,7 +105,7 @@ export default function Main() {
             date = date[1]+'/'+date[0]
             if(graphData[i].state===uf.value){
                 if(data_atual!==date){
-                    new_data.push({date: date, cases:graphData[i].cases, uf:graphData[i].state  })
+                    new_data.push({date: date, cases:graphData[i].cases, uf:graphData[i].state, mortes:graphData[i].deaths})
                 }else{
                     new_data[new_data.length-1].cases+=graphData[i].cases;
                 }
@@ -114,25 +113,7 @@ export default function Main() {
         }
         setInUseChart(new_data);
     }
-    const setGraphScopeDeath = uf=>{
 
-        var new_data = [];
-        var data_atual=''
-        
-        for(let i=15;i<graphData.length;i++){
-            var date = graphData[i].date.replace('2020-','');
-            date=date.split('-')
-            date = date[1]+'/'+date[0]
-            if(graphData[i].state===uf.value  && graphData[i].deaths!=='0'){
-                if(data_atual!==date){
-                    new_data.push({date: date, mortes:graphData[i].deaths, uf:graphData[i].state  })
-                }else{
-                    new_data[new_data.length-1].cases+=graphData[i].cases;
-                }
-            }
-        }
-        setInUseChartDeath(new_data);
-    }
     useEffect(()=>{
         var new_data = [];
         var data_atual=''
@@ -143,30 +124,13 @@ export default function Main() {
             date = date[1]+'/'+date[0]
             if(graphData[i].state==='TOTAL'){
                 if(data_atual!==date){
-                    new_data.push({date: date, cases:graphData[i].cases, uf:graphData[i].state  })
+                    new_data.push({date: date,mortes:graphData[i].deaths, cases:graphData[i].cases, uf:graphData[i].state  })
                 }else{
                     new_data[new_data.length-1].cases+=graphData[i].cases;
                 }
             }
         }
         setInUseChart(new_data); 
-        new_data = [];
-        data_atual=''
-        
-        for(let i=0;i<graphData.length;i++){
-            date = graphData[i].date.replace('2020-','');
-            date=date.split('-')
-            date = date[1]+'/'+date[0]
-            if(graphData[i].state==='TOTAL' && graphData[i].deaths!=='0' ){
-
-                if(data_atual!==date){
-                    new_data.push({date: date, mortes:graphData[i].deaths, uf:graphData[i].state  })
-                }else{
-                    new_data[new_data.length-1].cases+=graphData[i].cases;
-                }
-            }
-        }
-        setInUseChartDeath(new_data);
     },[graphData])
    
     const getGraphHeight = ()=>{
@@ -176,13 +140,7 @@ export default function Main() {
             return 1000;   
         }         
     }
-    const getGraphHeightDeath = ()=>{
-        try{
-            return(parseInt(inUseChartDeath[inUseChartDeath.length-1].mortes)+10);
-        }catch(error){
-            return 300;   
-        }         
-    }
+
     return (
     <Container>
         <header>
@@ -260,7 +218,9 @@ export default function Main() {
                         <XAxis dataKey="date" />            
                         <YAxis dataKey="cases" type="number"  domain={[0,()=>getGraphHeight()]} />  
                         <Tooltip />
+                        <Legend />
                         <Line type="monotone" dataKey="cases" stroke="#F44242" strokeWidth={2}/>
+                        <Line type="monotone" dataKey="mortes" stroke="#f5da42" strokeWidth={2}/>
                     </LineChart>
                 </ResponsiveContainer>
                 </div>
@@ -277,36 +237,6 @@ export default function Main() {
             
            
         </ChartSection>
-        <DeathChartSection>
-            <h2>Mortes por Covid-19</h2>
-            <section>
-                <div id="grafico">
-                <ResponsiveContainer width={'100%'} height={400}> 
-                    <LineChart
-                    data={inUseChartDeath}
-                    
-                    >
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />            
-                        <YAxis dataKey="mortes" type="number"  domain={[0,()=>getGraphHeightDeath()]} />  
-                        <Tooltip />
-                        <Line type="monotone" dataKey="mortes" stroke="#F44242" strokeWidth={2}/>
-                    </LineChart>
-                </ResponsiveContainer>
-                </div>
-                <div id='select'>
-                    <Select 
-                        options={states} 
-                        defaultValue={{ value: 'TOTAL', label: 'TOTAL' }} 
-                        onChange={uf=>setGraphScopeDeath(uf)}
-                        isSearchable={false}
-                    />
-                </div>
-                
-            </section>
-            
-           
-        </DeathChartSection>
         <footer>
             <p>Developed by <a href="https://instagram.com/jvcabralz">João Victor Cabral</a></p>
         </footer>
